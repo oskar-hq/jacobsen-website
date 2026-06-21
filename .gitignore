@@ -1,0 +1,8 @@
+# macOS
+.DS_Store
+
+# Lokale Tooling-/Editor-Konfiguration (nicht Teil der Website)
+.claude/
+
+# Lokaler Dev-Server
+serve.py

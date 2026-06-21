@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Jacobsen — Videoproduktion Schleswig-Holstein</title>
+  <meta name="description" content="Imagefilme, Recruiting-Videos und Social-Media-Content für Unternehmen in der Region Flensburg · Kappeln · Schleswig. Oskar Jacobsen, Videograf." />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://video.oskarjacobsen.de/" />
+  <meta property="og:title"       content="Jacobsen — Videoproduktion Schleswig-Holstein" />
+  <meta property="og:description" content="Imagefilme, Recruiting-Videos und Social-Media-Content für Unternehmen in der Region Flensburg · Kappeln · Schleswig." />
+  <meta property="og:image"       content="https://video.oskarjacobsen.de/og-image.jpg" />
+  <meta property="og:locale"      content="de_DE" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Jacobsen — Videoproduktion Schleswig-Holstein" />
+  <meta name="twitter:description" content="Imagefilme, Recruiting-Videos und Social-Media-Content für Unternehmen in der Region Flensburg · Kappeln · Schleswig." />
+  <meta name="twitter:image"       content="https://video.oskarjacobsen.de/og-image.jpg" />
+
+  <!-- Favicons -->
+  <link rel="icon" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" sizes="16x16" href="favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23000'/><text x='4' y='24' font-family='sans-serif' font-size='20' font-weight='700' fill='%23fff'>J</text></svg>" />
+
+  <!-- Font preload (lokal, kein Google Fonts) -->
+  <link rel="preload" href="fonts/SpaceGrotesk-latin.woff2"     as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/SpaceGrotesk-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
+
+  <link rel="stylesheet" href="css/lite-youtube-embed.css" />
+  <link rel="stylesheet" href="style.css?v=20260617" />
+
+  <!-- Strukturierte Daten -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://video.oskarjacobsen.de/#business",
+        "name": "Jacobsen",
+        "description": "Hochwertige Videoproduktion für Unternehmen in Schleswig-Holstein — Imagefilme, Recruiting-Videos und Social-Media-Content.",
+        "url": "https://video.oskarjacobsen.de",
+        "logo": "https://video.oskarjacobsen.de/og-image.jpg",
+        "image": "https://video.oskarjacobsen.de/og-image.jpg",
+        "email": "video@oskarjacobsen.de",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Niebyer Straße 1",
+          "postalCode": "24395",
+          "addressLocality": "Pommerby",
+          "addressCountry": "DE"
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Flensburg" },
+          { "@type": "City", "name": "Kappeln" },
+          { "@type": "City", "name": "Schleswig" },
+          { "@type": "State", "name": "Schleswig-Holstein" }
+        ],
+        "serviceType": ["Imagefilm", "Recruiting-Video", "Social-Media-Content"],
+        "founder": {
+          "@type": "Person",
+          "name": "Oskar Jacobsen",
+          "jobTitle": "Videograf",
+          "url": "https://video.oskarjacobsen.de"
+        },
+        "telephone": "+4915151223742"
+      }
+    ]
+  }
+  </script>
+
+  <!-- js-Klasse sofort setzen, damit Reveal-Elemente nur mit JS versteckt werden (kein FOUC, no-JS-sicher) -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <!-- Leichte Scroll-Reveals (IntersectionObserver, ohne GSAP/Lenis) -->
+  <script src="js/animations.js" defer></script>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Jacobsen</a>
+  <div class="nav-right">
+    <a href="#arbeiten">Arbeiten</a>
+    <a href="#anfragen" class="nav-cta">Projekt anfragen</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-video">
+      <!-- lite-youtube-embed: lädt YouTube erst nach Klick (DSGVO-konform) -->
+      <lite-youtube
+        videoid="DwrvBiq_46M"
+        playlabel="Jacobsen — Über mich abspielen"
+        params="rel=0&modestbranding=1">
+      </lite-youtube>
+    </div>
+    <div class="hero-text">
+      <h1 class="hero-name">Jacobsen</h1>
+      <p class="hero-tagline">Imagefilme&thinsp;·&thinsp;Recruiting&thinsp;·&thinsp;Social&nbsp;Media&thinsp;·&thinsp;Region</p>
+      <a href="#anfragen" class="hero-cta">Projekt anfragen</a>
+    </div>
+  </section>
+
+  <!-- ARBEITEN -->
+  <section class="portfolio" id="arbeiten">
+    <span class="section-label" data-reveal>Arbeiten</span>
+
+    <div class="portfolio-featured" data-reveal>
+      <a class="portfolio-item" href="https://youtu.be/sSnNlWChtXg" target="_blank" rel="noopener noreferrer"
+         aria-label="Imagefilm Gemeinde Gelting auf YouTube ansehen (öffnet in neuem Tab)">
+        <div class="portfolio-thumb">
+          <img src="https://img.youtube.com/vi/sSnNlWChtXg/maxresdefault.jpg" alt="Image Film Gemeinde Gelting" loading="lazy" width="640" height="360" />
+          <span class="portfolio-arrow" aria-hidden="true">↗</span>
+        </div>
+        <p class="portfolio-label">Imagefilm&thinsp;·&thinsp;Gemeinde Gelting</p>
+      </a>
+      <a class="portfolio-item" href="https://youtu.be/DsY7qK6Mrjc" target="_blank" rel="noopener noreferrer"
+         aria-label="Aftermovie OMR Festival auf YouTube ansehen (öffnet in neuem Tab)">
+        <div class="portfolio-thumb">
+          <img src="https://img.youtube.com/vi/DsY7qK6Mrjc/maxresdefault.jpg" alt="Aftermovie OMR Festival" loading="lazy" width="640" height="360" />
+          <span class="portfolio-arrow" aria-hidden="true">↗</span>
+        </div>
+        <p class="portfolio-label">Aftermovie&thinsp;·&thinsp;OMR Festival</p>
+      </a>
+    </div>
+
+    <div class="portfolio-grid">
+      <a class="portfolio-item" href="https://youtu.be/yFh_gb379-c" target="_blank" rel="noopener noreferrer"
+         aria-label="Website-Video Lasse.PTS auf YouTube ansehen (öffnet in neuem Tab)">
+        <div class="portfolio-thumb">
+          <img src="https://img.youtube.com/vi/yFh_gb379-c/mqdefault.jpg" alt="Website-Video Lasse.PTS" loading="lazy" width="320" height="180" />
+          <span class="portfolio-arrow" aria-hidden="true">↗</span>
+        </div>
+        <p class="portfolio-label">Unternehmensfilm&thinsp;·&thinsp;Lasse.PTS</p>
+      </a>
+      <a class="portfolio-item" href="https://youtube.com/shorts/CHl51cqaKss" target="_blank" rel="noopener noreferrer"
+         aria-label="Instagram-Vlog Lasse.PTS auf YouTube ansehen (öffnet in neuem Tab)">
+        <div class="portfolio-thumb">
+          <img src="https://img.youtube.com/vi/CHl51cqaKss/mqdefault.jpg" alt="Instagram-Vlog Lasse.PTS" loading="lazy" width="320" height="180" />
+          <span class="portfolio-arrow" aria-hidden="true">↗</span>
+        </div>
+        <p class="portfolio-label">Social Media&thinsp;·&thinsp;Lasse.PTS</p>
+      </a>
+      <a class="portfolio-item" href="https://youtube.com/shorts/nbValIpeoq8" target="_blank" rel="noopener noreferrer"
+         aria-label="Instagram-Reel Lasse.PTS auf YouTube ansehen (öffnet in neuem Tab)">
+        <div class="portfolio-thumb">
+          <img src="https://img.youtube.com/vi/nbValIpeoq8/mqdefault.jpg" alt="Instagram-Reel Lasse.PTS" loading="lazy" width="320" height="180" />
+          <span class="portfolio-arrow" aria-hidden="true">↗</span>
+        </div>
+        <p class="portfolio-label">Social Media&thinsp;·&thinsp;Lasse.PTS</p>
+      </a>
+      <a class="portfolio-item" href="https://youtu.be/E98i3P-n10g" target="_blank" rel="noopener noreferrer"
+         aria-label="Apple Watch Ad auf YouTube ansehen (öffnet in neuem Tab)">
+        <div class="portfolio-thumb">
+          <img src="https://img.youtube.com/vi/E98i3P-n10g/mqdefault.jpg" alt="Apple Watch Werbeclip – Don't be afraid" loading="lazy" width="320" height="180" />
+          <span class="portfolio-arrow" aria-hidden="true">↗</span>
+        </div>
+        <p class="portfolio-label">Werbeclip&thinsp;·&thinsp;Personal</p>
+      </a>
+      <a class="portfolio-item" href="https://youtu.be/E3NE55zBoo4" target="_blank" rel="noopener noreferrer"
+         aria-label="Dokumentation: Olympische Spiele auf YouTube ansehen (öffnet in neuem Tab)">
+        <div class="portfolio-thumb">
+          <img src="https://img.youtube.com/vi/E3NE55zBoo4/mqdefault.jpg" alt="Dokumentation: Olympische Spiele – Haben sie eine Zukunft?" loading="lazy" width="320" height="180" />
+          <span class="portfolio-arrow" aria-hidden="true">↗</span>
+        </div>
+        <p class="portfolio-label">Dokumentation&thinsp;·&thinsp;Personal</p>
+      </a>
+      <a class="portfolio-item" href="https://youtu.be/5KOtt-FBdwI" target="_blank" rel="noopener noreferrer"
+         aria-label="EURO 24 Trailer auf YouTube ansehen (öffnet in neuem Tab)">
+        <div class="portfolio-thumb">
+          <img src="https://img.youtube.com/vi/5KOtt-FBdwI/mqdefault.jpg" alt="EURO 24 Trailer – EM-Feeling pur" loading="lazy" width="320" height="180" />
+          <span class="portfolio-arrow" aria-hidden="true">↗</span>
+        </div>
+        <p class="portfolio-label">Trailer&thinsp;·&thinsp;Personal</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- LEISTUNGEN -->
+  <section class="services">
+    <span class="section-label" data-reveal>Was ich mache</span>
+    <div class="services-list" data-reveal>
+      <div class="service">
+        <h3>Imagefilm</h3>
+        <p>Ein Imagefilm zeigt, wer ein Unternehmen wirklich ist — nicht durch Werbesprache, sondern durch echte Einblicke. Für Website, Messen, LinkedIn.</p>
+      </div>
+      <div class="service">
+        <h3>Recruiting-Video</h3>
+        <p>Gute Mitarbeiter wählen ihren Arbeitgeber. Ein ehrliches Recruiting-Video gibt ihnen einen Grund, sich für euch zu entscheiden.</p>
+      </div>
+      <div class="service">
+        <h3>Social-Media-Content</h3>
+        <p>Kurzformate für Instagram, LinkedIn und TikTok — produziert fürs jeweilige Format, nicht nur gekürzte Langversionen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÜBER MICH -->
+  <section class="about">
+    <span class="section-label" data-reveal>Wer dahintersteht</span>
+    <div class="about-inner">
+      <h2 class="about-heading" data-reveal>Oskar Jacobsen.<br>Videograf aus Angeln.</h2>
+      <div class="about-body">
+        <p>Ich bin 18, aufgewachsen zwischen Flensburg, Kappeln und Schleswig. Was im Video oben zu sehen ist, ist nicht nur ich als Person — es ist meine Handschrift: Bildsprache, Schnitt, Atmosphäre.</p>
+        <p>Meine Kunden kommen meist über Empfehlung. Das setzt voraus, dass die Qualität stimmt — und dass die Zusammenarbeit unkompliziert ist. Beides nehme ich ernst.</p>
+        <ul class="about-facts">
+          <li><strong>Kein Overhead</strong> Direkt, ohne große Abstimmungsschleifen.</li>
+          <li><strong>Regional</strong> Ich kenne die Region und ihre Unternehmen.</li>
+          <li><strong>Verlässlich</strong> Termine werden gehalten, Absprachen auch.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANFRAGE -->
+  <section class="contact" id="anfragen">
+    <span class="section-label" data-reveal>Projekt anfragen</span>
+    <div class="contact-inner">
+      <div class="contact-text" data-reveal>
+        <h2>Schreib mir,<br>was du vorhast.</h2>
+        <p>Kein ausführliches Briefing. Eine kurze Nachricht per WhatsApp oder E-Mail reicht — ich melde mich innerhalb von 24 Stunden.</p>
+      </div>
+      <div class="contact-actions" data-reveal>
+        <a class="contact-action" href="https://wa.me/4915151223742" target="_blank" rel="noopener noreferrer"
+           aria-label="Per WhatsApp schreiben (öffnet in neuem Tab)">
+          <span class="contact-action-label">WhatsApp</span>
+          <span class="contact-action-value">+49 151 51223742 <span aria-hidden="true">↗</span></span>
+        </a>
+        <a class="contact-action" href="mailto:video@oskarjacobsen.de"
+           aria-label="E-Mail an video@oskarjacobsen.de schreiben">
+          <span class="contact-action-label">E-Mail</span>
+          <span class="contact-action-value">video@oskarjacobsen.de <span aria-hidden="true">↗</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="footer-logo">Jacobsen</span>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="projects.html">Alle Projekte</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+    <li><a href="impressum.html">Impressum</a></li>
+    <li><a href="datenschutz.html">Datenschutz</a></li>
+  </ul>
+  <span class="footer-copy">© Oskar Jacobsen</span>
+</footer>
+
+<script src="js/lite-youtube-embed.js"></script>
+
+</body>
+</html>
