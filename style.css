@@ -426,6 +426,13 @@ section {
   color: var(--black);
 }
 
+.contact-action-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.13em;
+  margin-left: 0.45em;
+}
+
 /* ─── FOOTER ─── */
 footer {
   padding: 1.75rem var(--pad);
