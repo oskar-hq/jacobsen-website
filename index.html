@@ -83,7 +83,9 @@
   <!-- js-Klasse sofort setzen, damit Reveal-Elemente nur mit JS versteckt werden (kein FOUC, no-JS-sicher) -->
   <script>document.documentElement.classList.add('js');</script>
 
-  <!-- Leichte Scroll-Reveals (IntersectionObserver, ohne GSAP/Lenis) -->
+  <!-- Animationen: leichte Reveals (IO) + zwei Premium-Effekte (GSAP, lokal, deferred) -->
+  <script src="js/gsap.min.js" defer></script>
+  <script src="js/ScrollTrigger.min.js" defer></script>
   <script src="js/animations.js" defer></script>
 </head>
 <body>
@@ -109,7 +111,7 @@
       </lite-youtube>
     </div>
     <div class="hero-text">
-      <h1 class="hero-name">Jacobsen</h1>
+      <h1 class="hero-name" aria-label="Jacobsen">Jacobsen</h1>
       <p class="hero-tagline">Imagefilme&thinsp;·&thinsp;Recruiting&thinsp;·&thinsp;Social&nbsp;Media&thinsp;·&thinsp;Region</p>
       <a href="#anfragen" class="hero-cta">Projekt anfragen</a>
     </div>
@@ -119,75 +121,76 @@
   <section class="portfolio" id="arbeiten">
     <span class="section-label" data-reveal>Arbeiten</span>
 
-    <div class="portfolio-featured">
-      <a class="portfolio-item" data-reveal href="https://youtu.be/sSnNlWChtXg" target="_blank" rel="noopener noreferrer"
-         aria-label="Imagefilm Gemeinde Gelting auf YouTube ansehen (öffnet in neuem Tab)">
-        <div class="portfolio-thumb">
-          <img src="https://img.youtube.com/vi/sSnNlWChtXg/maxresdefault.jpg" alt="Image Film Gemeinde Gelting" loading="lazy" width="640" height="360" />
-          <span class="portfolio-arrow" aria-hidden="true">↗</span>
-        </div>
-        <p class="portfolio-label">Imagefilm&thinsp;·&thinsp;Gemeinde Gelting</p>
-      </a>
-      <a class="portfolio-item" data-reveal href="https://youtu.be/DsY7qK6Mrjc" target="_blank" rel="noopener noreferrer"
-         aria-label="Aftermovie OMR Festival auf YouTube ansehen (öffnet in neuem Tab)">
-        <div class="portfolio-thumb">
-          <img src="https://img.youtube.com/vi/DsY7qK6Mrjc/maxresdefault.jpg" alt="Aftermovie OMR Festival" loading="lazy" width="640" height="360" />
-          <span class="portfolio-arrow" aria-hidden="true">↗</span>
-        </div>
-        <p class="portfolio-label">Aftermovie&thinsp;·&thinsp;OMR Festival</p>
-      </a>
+    <div class="portfolio-hscroll">
+      <div class="portfolio-track">
+        <a class="portfolio-item" href="https://youtu.be/sSnNlWChtXg" target="_blank" rel="noopener noreferrer"
+           aria-label="Imagefilm Gemeinde Gelting auf YouTube ansehen (öffnet in neuem Tab)">
+          <div class="portfolio-thumb">
+            <img src="https://img.youtube.com/vi/sSnNlWChtXg/maxresdefault.jpg" alt="Image Film Gemeinde Gelting" loading="lazy" width="640" height="360" />
+            <span class="portfolio-arrow" aria-hidden="true">↗</span>
+          </div>
+          <p class="portfolio-label">Imagefilm&thinsp;·&thinsp;Gemeinde Gelting</p>
+        </a>
+        <a class="portfolio-item" href="https://youtu.be/DsY7qK6Mrjc" target="_blank" rel="noopener noreferrer"
+           aria-label="Aftermovie OMR Festival auf YouTube ansehen (öffnet in neuem Tab)">
+          <div class="portfolio-thumb">
+            <img src="https://img.youtube.com/vi/DsY7qK6Mrjc/maxresdefault.jpg" alt="Aftermovie OMR Festival" loading="lazy" width="640" height="360" />
+            <span class="portfolio-arrow" aria-hidden="true">↗</span>
+          </div>
+          <p class="portfolio-label">Aftermovie&thinsp;·&thinsp;OMR Festival</p>
+        </a>
+        <a class="portfolio-item" href="https://youtu.be/yFh_gb379-c" target="_blank" rel="noopener noreferrer"
+           aria-label="Website-Video Lasse.PTS auf YouTube ansehen (öffnet in neuem Tab)">
+          <div class="portfolio-thumb">
+            <img src="https://img.youtube.com/vi/yFh_gb379-c/maxresdefault.jpg" alt="Website-Video Lasse.PTS" loading="lazy" width="640" height="360" />
+            <span class="portfolio-arrow" aria-hidden="true">↗</span>
+          </div>
+          <p class="portfolio-label">Unternehmensfilm&thinsp;·&thinsp;Lasse.PTS</p>
+        </a>
+        <a class="portfolio-item" href="https://youtube.com/shorts/CHl51cqaKss" target="_blank" rel="noopener noreferrer"
+           aria-label="Instagram-Vlog Lasse.PTS auf YouTube ansehen (öffnet in neuem Tab)">
+          <div class="portfolio-thumb">
+            <img src="https://img.youtube.com/vi/CHl51cqaKss/maxresdefault.jpg" alt="Instagram-Vlog Lasse.PTS" loading="lazy" width="640" height="360" />
+            <span class="portfolio-arrow" aria-hidden="true">↗</span>
+          </div>
+          <p class="portfolio-label">Social Media&thinsp;·&thinsp;Lasse.PTS</p>
+        </a>
+        <a class="portfolio-item" href="https://youtube.com/shorts/nbValIpeoq8" target="_blank" rel="noopener noreferrer"
+           aria-label="Instagram-Reel Lasse.PTS auf YouTube ansehen (öffnet in neuem Tab)">
+          <div class="portfolio-thumb">
+            <img src="https://img.youtube.com/vi/nbValIpeoq8/maxresdefault.jpg" alt="Instagram-Reel Lasse.PTS" loading="lazy" width="640" height="360" />
+            <span class="portfolio-arrow" aria-hidden="true">↗</span>
+          </div>
+          <p class="portfolio-label">Social Media&thinsp;·&thinsp;Lasse.PTS</p>
+        </a>
+        <a class="portfolio-item" href="https://youtu.be/E98i3P-n10g" target="_blank" rel="noopener noreferrer"
+           aria-label="Apple Watch Ad auf YouTube ansehen (öffnet in neuem Tab)">
+          <div class="portfolio-thumb">
+            <img src="https://img.youtube.com/vi/E98i3P-n10g/maxresdefault.jpg" alt="Apple Watch Werbeclip – Don't be afraid" loading="lazy" width="640" height="360" />
+            <span class="portfolio-arrow" aria-hidden="true">↗</span>
+          </div>
+          <p class="portfolio-label">Werbeclip&thinsp;·&thinsp;Personal</p>
+        </a>
+        <a class="portfolio-item" href="https://youtu.be/E3NE55zBoo4" target="_blank" rel="noopener noreferrer"
+           aria-label="Dokumentation: Olympische Spiele auf YouTube ansehen (öffnet in neuem Tab)">
+          <div class="portfolio-thumb">
+            <img src="https://img.youtube.com/vi/E3NE55zBoo4/maxresdefault.jpg" alt="Dokumentation: Olympische Spiele – Haben sie eine Zukunft?" loading="lazy" width="640" height="360" />
+            <span class="portfolio-arrow" aria-hidden="true">↗</span>
+          </div>
+          <p class="portfolio-label">Dokumentation&thinsp;·&thinsp;Personal</p>
+        </a>
+        <a class="portfolio-item" href="https://youtu.be/5KOtt-FBdwI" target="_blank" rel="noopener noreferrer"
+           aria-label="EURO 24 Trailer auf YouTube ansehen (öffnet in neuem Tab)">
+          <div class="portfolio-thumb">
+            <img src="https://img.youtube.com/vi/5KOtt-FBdwI/maxresdefault.jpg" alt="EURO 24 Trailer – EM-Feeling pur" loading="lazy" width="640" height="360" />
+            <span class="portfolio-arrow" aria-hidden="true">↗</span>
+          </div>
+          <p class="portfolio-label">Trailer&thinsp;·&thinsp;Personal</p>
+        </a>
+      </div>
     </div>
 
-    <div class="portfolio-grid">
-      <a class="portfolio-item" data-reveal href="https://youtu.be/yFh_gb379-c" target="_blank" rel="noopener noreferrer"
-         aria-label="Website-Video Lasse.PTS auf YouTube ansehen (öffnet in neuem Tab)">
-        <div class="portfolio-thumb">
-          <img src="https://img.youtube.com/vi/yFh_gb379-c/mqdefault.jpg" alt="Website-Video Lasse.PTS" loading="lazy" width="320" height="180" />
-          <span class="portfolio-arrow" aria-hidden="true">↗</span>
-        </div>
-        <p class="portfolio-label">Unternehmensfilm&thinsp;·&thinsp;Lasse.PTS</p>
-      </a>
-      <a class="portfolio-item" data-reveal href="https://youtube.com/shorts/CHl51cqaKss" target="_blank" rel="noopener noreferrer"
-         aria-label="Instagram-Vlog Lasse.PTS auf YouTube ansehen (öffnet in neuem Tab)">
-        <div class="portfolio-thumb">
-          <img src="https://img.youtube.com/vi/CHl51cqaKss/mqdefault.jpg" alt="Instagram-Vlog Lasse.PTS" loading="lazy" width="320" height="180" />
-          <span class="portfolio-arrow" aria-hidden="true">↗</span>
-        </div>
-        <p class="portfolio-label">Social Media&thinsp;·&thinsp;Lasse.PTS</p>
-      </a>
-      <a class="portfolio-item" data-reveal href="https://youtube.com/shorts/nbValIpeoq8" target="_blank" rel="noopener noreferrer"
-         aria-label="Instagram-Reel Lasse.PTS auf YouTube ansehen (öffnet in neuem Tab)">
-        <div class="portfolio-thumb">
-          <img src="https://img.youtube.com/vi/nbValIpeoq8/mqdefault.jpg" alt="Instagram-Reel Lasse.PTS" loading="lazy" width="320" height="180" />
-          <span class="portfolio-arrow" aria-hidden="true">↗</span>
-        </div>
-        <p class="portfolio-label">Social Media&thinsp;·&thinsp;Lasse.PTS</p>
-      </a>
-      <a class="portfolio-item" data-reveal href="https://youtu.be/E98i3P-n10g" target="_blank" rel="noopener noreferrer"
-         aria-label="Apple Watch Ad auf YouTube ansehen (öffnet in neuem Tab)">
-        <div class="portfolio-thumb">
-          <img src="https://img.youtube.com/vi/E98i3P-n10g/mqdefault.jpg" alt="Apple Watch Werbeclip – Don't be afraid" loading="lazy" width="320" height="180" />
-          <span class="portfolio-arrow" aria-hidden="true">↗</span>
-        </div>
-        <p class="portfolio-label">Werbeclip&thinsp;·&thinsp;Personal</p>
-      </a>
-      <a class="portfolio-item" data-reveal href="https://youtu.be/E3NE55zBoo4" target="_blank" rel="noopener noreferrer"
-         aria-label="Dokumentation: Olympische Spiele auf YouTube ansehen (öffnet in neuem Tab)">
-        <div class="portfolio-thumb">
-          <img src="https://img.youtube.com/vi/E3NE55zBoo4/mqdefault.jpg" alt="Dokumentation: Olympische Spiele – Haben sie eine Zukunft?" loading="lazy" width="320" height="180" />
-          <span class="portfolio-arrow" aria-hidden="true">↗</span>
-        </div>
-        <p class="portfolio-label">Dokumentation&thinsp;·&thinsp;Personal</p>
-      </a>
-      <a class="portfolio-item" data-reveal href="https://youtu.be/5KOtt-FBdwI" target="_blank" rel="noopener noreferrer"
-         aria-label="EURO 24 Trailer auf YouTube ansehen (öffnet in neuem Tab)">
-        <div class="portfolio-thumb">
-          <img src="https://img.youtube.com/vi/5KOtt-FBdwI/mqdefault.jpg" alt="EURO 24 Trailer – EM-Feeling pur" loading="lazy" width="320" height="180" />
-          <span class="portfolio-arrow" aria-hidden="true">↗</span>
-        </div>
-        <p class="portfolio-label">Trailer&thinsp;·&thinsp;Personal</p>
-      </a>
-    </div>
+    <div class="portfolio-progress" aria-hidden="true"><span class="portfolio-progress-bar"></span></div>
   </section>
 
   <!-- LEISTUNGEN -->
