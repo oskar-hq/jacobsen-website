@@ -204,7 +204,7 @@ class LiteYTEmbed extends HTMLElement {
     upgradePosterImage() {
          // Defer to reduce network contention.
         setTimeout(() => {
-            const webpUrl = `https://i.ytimg.com/vi_webp/${this.videoId}/sddefault.webp`;
+            const webpUrl = `https://i.ytimg.com/vi_webp/${this.videoId}/maxresdefault.webp`;
             const img = new Image();
             img.fetchPriority = 'low'; // low priority to reduce network contention
             img.referrerpolicy = 'origin'; // Not 100% sure it's needed, but https://github.com/ampproject/amphtml/pull/3940
