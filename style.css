@@ -183,10 +183,10 @@ nav {
   padding: 1rem 2rem;
   font-size: 0.875rem;
   font-weight: 500;
-  transition: opacity 0.4s;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.hero-cta:hover { opacity: 0.65; }
+.hero-cta:hover { background: var(--gray); transform: scale(1.06); }
 
 /* ─── SECTION BASE ─── */
 section {
@@ -495,7 +495,22 @@ footer {
   gap: 1rem;
 }
 
-.footer-logo { font-weight: 700; color: var(--black); font-size: 0.875rem; }
+.footer-logo {
+  font-weight: 700;
+  color: var(--black);
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.footer-flag {
+  height: 1.35em;
+  width: auto;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+  display: block;
+}
 
 .footer-links {
   display: flex;
