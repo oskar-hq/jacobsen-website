@@ -330,6 +330,53 @@ section {
   .hero-letter { will-change: auto; }
 }
 
+/* ─── KUNDEN (Logo-Marquee) ─── */
+.clients { border-top: 1px solid var(--off-white); }
+
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* Basis: statisch & umgebrochen (no-JS- und reduced-motion-sicher) */
+.marquee-track {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem 4.5rem;
+}
+
+/* Animiert: nur wenn JS aktiv und Bewegung erlaubt (Klasse via animations.js) */
+.js .marquee-track.is-animated {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  width: max-content;
+  gap: 4.5rem;
+  animation: marquee 32s linear infinite;
+}
+.marquee:hover .marquee-track.is-animated { animation-play-state: paused; }
+
+.marquee-logo {
+  height: 38px;
+  width: auto;
+  flex: 0 0 auto;
+  filter: brightness(0);   /* einheitliche dunkle Silhouette (monochrom) */
+  opacity: 0.45;
+  transition: opacity 0.3s ease;
+}
+.marquee-logo:hover { opacity: 0.8; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee { -webkit-mask-image: none; mask-image: none; }
+}
+
 /* ─── SERVICES ─── */
 .services { border-top: 1px solid var(--off-white); }
 

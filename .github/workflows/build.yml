@@ -1,0 +1,43 @@
+name: Build site content
+
+# Läuft automatisch, wenn du Daten oder Logos änderst.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/projects.json'
+      - 'kunden-logos/**'
+      - 'scripts/build.py'
+  workflow_dispatch:        # erlaubt manuelles Auslösen im Actions-Tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-content
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Generate static HTML from data
+        run: python scripts/build.py
+
+      - name: Commit regenerated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html projects.html kunden-logos/manifest.json
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen – nichts zu committen."
+          else
+            git commit -m "chore: Inhalte aus Daten neu generiert [skip ci]"
+            git push
+          fi

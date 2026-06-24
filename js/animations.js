@@ -82,6 +82,16 @@
     else play();
   })();
 
+  /* ---------- 2b) KUNDEN-LOGO-MARQUEE ---------- */
+  (function marquee() {
+    var track = document.querySelector('.marquee-track[data-marquee]');
+    if (!track || reduce) return;            // reduced-motion: statische, umgebrochene Reihe
+    if (!track.children.length) return;
+    // Logo-Set duplizieren → nahtlose Endlosschleife (translateX -50%)
+    track.innerHTML = track.innerHTML + track.innerHTML;
+    track.classList.add('is-animated');
+  })();
+
   /* ---------- 3) HORIZONTALER PROJEKTE-SCROLL ---------- */
   (function horizontal() {
     var section = document.querySelector('.portfolio');
