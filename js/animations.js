@@ -2,9 +2,9 @@
  * animations.js — Jacobsen Videoproduktion
  *  1) Leichte Scroll-Reveals (IntersectionObserver)
  *  2) Hero-"Assemble"-Intro (GSAP, einmal pro Session)
- *  3) Horizontaler Projekte-Scroll
- *       Desktop (Pointer fein, ≥1000px): GSAP-ScrollTrigger-Pin (vertikal → horizontal)
- *       Mobile/Touch: nativer Swipe mit CSS scroll-snap
+ *  2b) Kunden-Logo-Marquee (nahtlose Endlosschleife)
+ *  3) Projekte: nativer Horizontal-Swipe (scroll-snap) + Fortschritt pro Panel
+ *  4) Tab-/Filter-System (Leistung ↔ Beispiel-Video)
  *  prefers-reduced-motion wird überall respektiert.
  */
 (function () {
@@ -106,52 +106,46 @@
     track.style.animationDuration = Math.max(30, Math.round(halfWidth / 35)) + 's';
   })();
 
-  /* ---------- 3) HORIZONTALER PROJEKTE-SCROLL ---------- */
-  (function horizontal() {
-    var section = document.querySelector('.portfolio');
-    var hscroll = document.querySelector('.portfolio-hscroll');
-    var track   = document.querySelector('.portfolio-track');
-    var bar     = document.querySelector('.portfolio-progress-bar');
-    if (!section || !hscroll || !track) return;
-
-    function setProgress(p) {
+  /* ---------- 3) PROJEKTE: NATIVER HORIZONTAL-SCROLL + FORTSCHRITT (pro Panel) ---------- */
+  (function projectScroll() {
+    document.querySelectorAll('.portfolio-hscroll:not(.is-single)').forEach(function (hscroll) {
+      var bar = hscroll.parentElement.querySelector('.portfolio-progress-bar');
       if (!bar) return;
-      p = Math.max(0, Math.min(1, p));
-      var range = bar.parentElement.clientWidth - bar.offsetWidth;
-      bar.style.transform = 'translateX(' + (p * range) + 'px)';
-    }
-
-    var desktopPin = !reduce && hasGSAP &&
-      window.matchMedia('(min-width: 1000px) and (pointer: fine)').matches;
-
-    if (desktopPin) {
-      // Desktop: vertikales Scrollen → horizontaler Tween, Sektion gepinnt
-      gsap.registerPlugin(ScrollTrigger);
-      section.classList.add('is-hpin');
-      gsap.to(track, {
-        x: function () { return -(track.scrollWidth - hscroll.clientWidth); },
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: function () { return '+=' + (track.scrollWidth - hscroll.clientWidth); },
-          pin: true,
-          scrub: 0.6,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          onUpdate: function (self) { setProgress(self.progress); }
-        }
-      });
-      window.addEventListener('load', function () { ScrollTrigger.refresh(); });
-    } else {
-      // Mobile/Touch (& reduced): nativer Swipe, Fortschritt aus scrollLeft
       var update = function () {
         var max = hscroll.scrollWidth - hscroll.clientWidth;
-        setProgress(max > 0 ? hscroll.scrollLeft / max : 0);
+        var p = max > 0 ? hscroll.scrollLeft / max : 0;
+        var range = bar.parentElement.clientWidth - bar.offsetWidth;
+        bar.style.transform = 'translateX(' + (Math.max(0, Math.min(1, p)) * range) + 'px)';
       };
       hscroll.addEventListener('scroll', update, { passive: true });
       window.addEventListener('resize', update);
       update();
-    }
+    });
+  })();
+
+  /* ---------- 4) TABS / FILTER (Leistung ↔ Beispiel-Video) ---------- */
+  (function tabsFilter() {
+    document.querySelectorAll('[role="tablist"]').forEach(function (list) {
+      var tabs = [].slice.call(list.querySelectorAll('.tab'));
+      if (!tabs.length) return;
+      var container = list.parentElement;
+
+      function activate(key) {
+        tabs.forEach(function (t) {
+          var on = t.getAttribute('data-tab') === key;
+          t.classList.toggle('is-active', on);
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        container.querySelectorAll(':scope > .tab-panel').forEach(function (panel) {
+          panel.classList.toggle('is-active', panel.getAttribute('data-panel') === key);
+        });
+        // Fortschrittsbalken des nun sichtbaren Panels neu berechnen
+        window.dispatchEvent(new Event('resize'));
+      }
+
+      tabs.forEach(function (t) {
+        t.addEventListener('click', function () { activate(t.getAttribute('data-tab')); });
+      });
+    });
   })();
 })();

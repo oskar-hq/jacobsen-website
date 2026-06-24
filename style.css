@@ -290,13 +290,91 @@ section {
   .portfolio-item { flex-basis: clamp(300px, 24vw, 380px); scroll-snap-align: start; }
 }
 
-/* Desktop-Pin (per JS aktiviert): GSAP steuert den Track, kein nativer Scroll */
-.portfolio.is-hpin .portfolio-hscroll {
+/* ─── TABS / FILTER ─── */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.75rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--off-white);
+}
+.tab {
+  appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: 0;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--gray);
+  padding: 0 0 0.85rem;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+.tab:hover { color: var(--black); }
+.tab.is-active { color: var(--black); }
+.tab.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  background: var(--black);
+}
+
+.tab-benefit {
+  font-size: 0.95rem;
+  color: var(--gray);
+  line-height: 1.6;
+  max-width: 48ch;
+  margin-bottom: 2rem;
+}
+
+.tab-empty {
+  font-size: 0.95rem;
+  color: var(--gray);
+  line-height: 1.7;
+  padding: 1rem 0 0.5rem;
+}
+.tab-empty a { color: var(--black); border-bottom: 1px solid currentColor; }
+
+/* Panels: alle im DOM (SEO-lesbar), nur das aktive sichtbar */
+.tab-panel { display: none; }
+.tab-panel.is-active { display: block; }
+
+/* Einzelnes Video: zentriert, kein Scroll */
+.portfolio-hscroll.is-single {
   overflow: visible;
   scroll-snap-type: none;
   margin: 0;
 }
-.portfolio.is-hpin .portfolio-track { padding: 0; }
+.portfolio-hscroll.is-single .portfolio-track {
+  width: auto;
+  padding: 0;
+  justify-content: center;
+}
+.portfolio-hscroll.is-single .portfolio-item {
+  flex: 0 0 min(560px, 100%);
+  max-width: 560px;
+}
+
+/* Tab-Wechsel-Animation (Panel fadet, Cards gleiten gestaffelt) */
+@media (prefers-reduced-motion: no-preference) {
+  .tab-panel.is-active { animation: panelFade 0.35s ease both; }
+  .tab-panel.is-active .portfolio-item,
+  .tab-panel.is-active .project-row {
+    animation: cardIn 0.5s ease both;
+  }
+  .tab-panel.is-active .portfolio-item:nth-child(2),
+  .tab-panel.is-active .project-row:nth-child(2) { animation-delay: 0.06s; }
+  .tab-panel.is-active .portfolio-item:nth-child(3),
+  .tab-panel.is-active .project-row:nth-child(3) { animation-delay: 0.12s; }
+  .tab-panel.is-active .portfolio-item:nth-child(n+4),
+  .tab-panel.is-active .project-row:nth-child(n+4) { animation-delay: 0.18s; }
+}
+@keyframes panelFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes cardIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
 /* Fortschrittsbalken */
 .portfolio-progress {
