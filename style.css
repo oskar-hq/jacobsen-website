@@ -186,7 +186,7 @@ nav {
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.hero-cta:hover { background: var(--gray); transform: scale(1.06); }
+.hero-cta:hover { background: var(--gray); transform: scale(1.15); }
 
 /* ─── SECTION BASE ─── */
 section {

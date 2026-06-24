@@ -84,12 +84,26 @@
 
   /* ---------- 2b) KUNDEN-LOGO-MARQUEE ---------- */
   (function marquee() {
+    var box = document.querySelector('.marquee');
     var track = document.querySelector('.marquee-track[data-marquee]');
-    if (!track || reduce) return;            // reduced-motion: statische, umgebrochene Reihe
-    if (!track.children.length) return;
-    // Logo-Set duplizieren → nahtlose Endlosschleife (translateX -50%)
-    track.innerHTML = track.innerHTML + track.innerHTML;
+    if (!box || !track || reduce || !track.children.length) return;
+
+    // WICHTIG: erst nowrap-Layout aktivieren, dann messen (sonst zählt die umgebrochene Breite)
     track.classList.add('is-animated');
+
+    var original = track.innerHTML;
+    // 1) genug Kopien, bis EINE Hälfte mindestens die Bildschirmbreite füllt
+    var safety = 0;
+    while (track.scrollWidth < box.clientWidth && safety < 30) {
+      track.innerHTML += original;
+      safety++;
+    }
+    // 2) gefüllte Hälfte verdoppeln → nahtlose Endlosschleife bei translateX(-50%)
+    var halfWidth = track.scrollWidth;
+    track.innerHTML += track.innerHTML;
+
+    // 3) konstante Geschwindigkeit (~70px/s), unabhängig von Logo-Anzahl
+    track.style.animationDuration = Math.max(18, Math.round(halfWidth / 70)) + 's';
   })();
 
   /* ---------- 3) HORIZONTALER PROJEKTE-SCROLL ---------- */
