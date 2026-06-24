@@ -362,11 +362,11 @@ section {
   height: 38px;
   width: auto;
   flex: 0 0 auto;
-  filter: brightness(0);   /* einheitliche dunkle Silhouette (monochrom) */
-  opacity: 0.45;
-  transition: opacity 0.3s ease;
+  filter: grayscale(100%);   /* entsättigt, Form bleibt erhalten */
+  opacity: 0.6;
+  transition: filter 0.3s ease, opacity 0.3s ease;
 }
-.marquee-logo:hover { opacity: 0.8; }
+.marquee-logo:hover { filter: grayscale(0%); opacity: 1; }
 
 @keyframes marquee {
   from { transform: translateX(0); }
