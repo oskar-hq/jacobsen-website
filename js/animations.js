@@ -102,8 +102,8 @@
     var halfWidth = track.scrollWidth;
     track.innerHTML += track.innerHTML;
 
-    // 3) konstante Geschwindigkeit (~70px/s), unabhängig von Logo-Anzahl
-    track.style.animationDuration = Math.max(18, Math.round(halfWidth / 70)) + 's';
+    // 3) konstante, ruhige Geschwindigkeit (~35px/s), unabhängig von Logo-Anzahl
+    track.style.animationDuration = Math.max(30, Math.round(halfWidth / 35)) + 's';
   })();
 
   /* ---------- 3) HORIZONTALER PROJEKTE-SCROLL ---------- */
