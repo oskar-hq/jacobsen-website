@@ -408,6 +408,201 @@ section {
   .hero-letter { will-change: auto; }
 }
 
+/* ─── MEINE ARBEIT (Segmented-Switcher, „Softgrau") ─── */
+.work {
+  max-width: none;
+  margin: 0;
+  background: #f3f3f4;
+  padding: 120px var(--pad) 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.work-kicker {
+  font-size: 13px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #a4a4ac;
+  font-weight: 500;
+  margin-bottom: 18px;
+}
+.work-title {
+  font-size: clamp(34px, 6vw, 52px);
+  font-weight: 600;
+  letter-spacing: -1px;
+  line-height: 1.05;
+  color: #0a0a0c;
+  margin-bottom: 64px;
+}
+
+/* Segmented Switch */
+.switch {
+  position: relative;
+  display: inline-flex;
+  padding: 6px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #e2e2e6;
+  box-shadow: 0 18px 40px -20px rgba(0, 0, 0, 0.35);
+  max-width: 100%;
+}
+.switch-pill {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  height: calc(100% - 12px);
+  width: 0;
+  border-radius: 11px;
+  background: #111114;
+  box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.35);
+  z-index: 1;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.switch-btn {
+  position: relative;
+  z-index: 2;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: none;
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 500;
+  color: #9a9aa2;
+  padding: 14px 24px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.35s ease;
+}
+.switch-btn.is-active { color: #ffffff; }
+.switch-btn span { position: relative; z-index: 2; }
+
+/* Inhalts-Carousel */
+.work-carousel {
+  width: 100%;
+  max-width: 1000px;
+  overflow: hidden;
+  margin-top: 80px;
+  transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.work-track {
+  display: flex;
+  align-items: flex-start;
+  width: 300%;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.work-panel {
+  flex: 0 0 33.3333%;
+  padding: 0 4px;
+}
+.work-goal {
+  font-size: 19px;
+  line-height: 1.6;
+  color: #555555;
+  max-width: 720px;
+  margin: 0 auto 48px;
+}
+.work-empty {
+  font-size: 19px;
+  line-height: 1.6;
+  color: #555555;
+  max-width: 620px;
+  margin: 0 auto;
+}
+.work-empty a { color: #0a0a0c; border-bottom: 1px solid currentColor; }
+
+/* Video-Grid */
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  text-align: left;
+}
+.video-embed {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  background-color: #e2e2e6;
+  background-size: cover;
+  background-position: center;
+}
+.video-embed::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 12, 0.12);
+  transition: background 0.3s ease;
+}
+.video-embed:hover::after { background: rgba(10, 10, 12, 0.02); }
+.video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #111114;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+.video-embed:hover .video-play { transform: translate(-50%, -50%) scale(1.08); }
+.video-play svg { margin-left: 3px; }
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 14px;
+}
+.video-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111114;
+  margin: 14px 0 4px;
+}
+.video-card-note {
+  font-size: 14px;
+  color: #7a7a82;
+}
+
+@media (max-width: 720px) {
+  .work { padding: 72px var(--pad) 64px; }
+  .work-title { margin-bottom: 40px; }
+  .switch {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+  }
+  .switch::-webkit-scrollbar { display: none; }
+  .work-carousel { margin-top: 48px; }
+  .work-goal { font-size: 17px; margin-bottom: 32px; }
+  .video-grid { grid-template-columns: 1fr; gap: 18px; }
+  .video-play { width: 54px; height: 54px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .switch-pill,
+  .work-track,
+  .work-carousel { transition: none; }
+}
+
 /* ─── KUNDEN (Logo-Marquee) ─── */
 .clients { border-top: 1px solid var(--off-white); }
 

@@ -117,98 +117,106 @@
   </section>
 
   <!-- ARBEITEN -->
-  <section class="portfolio" id="arbeiten">
-    <span class="section-label" data-reveal>Arbeiten</span>
+  <section class="work" id="arbeiten">
+    <span class="work-kicker" data-reveal>PORTFOLIO</span>
+    <h2 class="work-title" data-reveal>Meine Arbeit</h2>
 
     <!-- PROJECTS:INDEX:START -->
-      <div class="tabs" role="tablist" aria-label="Leistungen">
-        <button class="tab is-active" type="button" role="tab" id="tab-imagefilm" data-tab="imagefilm" aria-selected="true" aria-controls="panel-imagefilm">Imagefilm</button>
-        <button class="tab" type="button" role="tab" id="tab-recruiting" data-tab="recruiting" aria-selected="false" aria-controls="panel-recruiting">Recruiting-Video</button>
-        <button class="tab" type="button" role="tab" id="tab-social" data-tab="social" aria-selected="false" aria-controls="panel-social">Social-Media-Content</button>
+      <div class="switch" role="tablist" aria-label="Leistungen">
+        <div class="switch-pill" aria-hidden="true"></div>
+        <button class="switch-btn is-active" type="button" role="tab" data-i="0" aria-selected="true"><span>ImageFilm</span></button>
+        <button class="switch-btn" type="button" role="tab" data-i="1" aria-selected="false"><span>Recruiting</span></button>
+        <button class="switch-btn" type="button" role="tab" data-i="2" aria-selected="false"><span>Video &amp; Social Media Content</span></button>
       </div>
-      <div class="tab-panel is-active" id="panel-imagefilm" data-panel="imagefilm" role="tabpanel" aria-labelledby="tab-imagefilm">
-        <p class="tab-benefit">Zeigt, wer ihr wirklich seid — für mehr Bindung zu euren Kunden.</p>
-        <div class="portfolio-hscroll">
-          <div class="portfolio-track">
-            <a class="portfolio-item" href="https://youtu.be/_LAC2w1k5po" target="_blank" rel="noopener noreferrer"
-               aria-label="Petersens Ferienwohnungen auf YouTube ansehen (öffnet in neuem Tab)">
-              <div class="portfolio-thumb">
-                <img src="https://img.youtube.com/vi/_LAC2w1k5po/maxresdefault.jpg" alt="Petersens Ferienwohnungen" loading="lazy" width="640" height="360" />
-                <span class="portfolio-arrow" aria-hidden="true">↗</span>
-              </div>
-              <p class="portfolio-label">Imagefilm&thinsp;·&thinsp;Petersens</p>
-            </a>
-            <a class="portfolio-item" href="https://youtu.be/sSnNlWChtXg" target="_blank" rel="noopener noreferrer"
-               aria-label="Image Film Gemeinde Gelting auf YouTube ansehen (öffnet in neuem Tab)">
-              <div class="portfolio-thumb">
-                <img src="https://img.youtube.com/vi/sSnNlWChtXg/maxresdefault.jpg" alt="Image Film Gemeinde Gelting" loading="lazy" width="640" height="360" />
-                <span class="portfolio-arrow" aria-hidden="true">↗</span>
-              </div>
-              <p class="portfolio-label">Imagefilm&thinsp;·&thinsp;Gemeinde Gelting</p>
-            </a>
-            <a class="portfolio-item" href="https://youtu.be/yFh_gb379-c" target="_blank" rel="noopener noreferrer"
-               aria-label="Website-Video Lasse.PTS auf YouTube ansehen (öffnet in neuem Tab)">
-              <div class="portfolio-thumb">
-                <img src="https://img.youtube.com/vi/yFh_gb379-c/maxresdefault.jpg" alt="Website-Video Lasse.PTS" loading="lazy" width="640" height="360" />
-                <span class="portfolio-arrow" aria-hidden="true">↗</span>
-              </div>
-              <p class="portfolio-label">Unternehmensfilm&thinsp;·&thinsp;Lasse.PTS</p>
-            </a>
+      <div class="work-carousel">
+        <div class="work-track">
+        <div class="work-panel" role="tabpanel">
+          <p class="work-goal">Ein ImageFilm erzählt die Geschichte hinter der Marke, schafft Vertrauen und zeigt, wofür ein Unternehmen steht.</p>
+          <div class="video-grid">
+            <div class="video-card">
+              <button class="video-embed" type="button" data-id="_LAC2w1k5po" data-title="Petersens Ferienwohnungen"
+                      aria-label="Video abspielen: Petersens Ferienwohnungen"
+                      style="background-image:url('https://img.youtube.com/vi/_LAC2w1k5po/maxresdefault.jpg')">
+                <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+              </button>
+              <p class="video-card-title">Petersens Ferienwohnungen</p>
+              <p class="video-card-note">Imagefilm · Petersens</p>
+            </div>
+            <div class="video-card">
+              <button class="video-embed" type="button" data-id="sSnNlWChtXg" data-title="Image Film Gemeinde Gelting"
+                      aria-label="Video abspielen: Image Film Gemeinde Gelting"
+                      style="background-image:url('https://img.youtube.com/vi/sSnNlWChtXg/maxresdefault.jpg')">
+                <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+              </button>
+              <p class="video-card-title">Image Film Gemeinde Gelting</p>
+              <p class="video-card-note">Imagefilm · Gemeinde Gelting</p>
+            </div>
+            <div class="video-card">
+              <button class="video-embed" type="button" data-id="yFh_gb379-c" data-title="Website-Video Lasse.PTS"
+                      aria-label="Video abspielen: Website-Video Lasse.PTS"
+                      style="background-image:url('https://img.youtube.com/vi/yFh_gb379-c/maxresdefault.jpg')">
+                <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+              </button>
+              <p class="video-card-title">Website-Video Lasse.PTS</p>
+              <p class="video-card-note">Unternehmensfilm · Lasse.PTS</p>
+            </div>
           </div>
         </div>
-        <div class="portfolio-progress" aria-hidden="true"><span class="portfolio-progress-bar"></span></div>
-      </div>
-      <div class="tab-panel" id="panel-recruiting" data-panel="recruiting" role="tabpanel" aria-labelledby="tab-recruiting">
-        <p class="tab-benefit">Gibt den richtigen Leuten einen Grund, sich für euch zu entscheiden.</p>
-        <p class="tab-empty">Hier entsteht gerade das erste Beispiel. Du hast ein Recruiting-Projekt? <a href="#anfragen">Schreib mir.</a></p>
-      </div>
-      <div class="tab-panel" id="panel-social" data-panel="social" role="tabpanel" aria-labelledby="tab-social">
-        <p class="tab-benefit">Kurzformate, die fürs jeweilige Format gemacht sind — nicht nur gekürzt.</p>
-        <div class="portfolio-hscroll">
-          <div class="portfolio-track">
-            <a class="portfolio-item" href="https://youtu.be/DsY7qK6Mrjc" target="_blank" rel="noopener noreferrer"
-               aria-label="Aftermovie OMR Festival auf YouTube ansehen (öffnet in neuem Tab)">
-              <div class="portfolio-thumb">
-                <img src="https://img.youtube.com/vi/DsY7qK6Mrjc/maxresdefault.jpg" alt="Aftermovie OMR Festival" loading="lazy" width="640" height="360" />
-                <span class="portfolio-arrow" aria-hidden="true">↗</span>
-              </div>
-              <p class="portfolio-label">Aftermovie&thinsp;·&thinsp;OMR Festival</p>
-            </a>
-            <a class="portfolio-item" href="https://youtube.com/shorts/CHl51cqaKss" target="_blank" rel="noopener noreferrer"
-               aria-label="Instagram-Vlog Lasse.PTS auf YouTube ansehen (öffnet in neuem Tab)">
-              <div class="portfolio-thumb">
-                <img src="https://img.youtube.com/vi/CHl51cqaKss/maxresdefault.jpg" alt="Instagram-Vlog Lasse.PTS" loading="lazy" width="640" height="360" />
-                <span class="portfolio-arrow" aria-hidden="true">↗</span>
-              </div>
-              <p class="portfolio-label">Social Media&thinsp;·&thinsp;Lasse.PTS</p>
-            </a>
-            <a class="portfolio-item" href="https://youtube.com/shorts/nbValIpeoq8" target="_blank" rel="noopener noreferrer"
-               aria-label="Instagram-Reel Lasse.PTS auf YouTube ansehen (öffnet in neuem Tab)">
-              <div class="portfolio-thumb">
-                <img src="https://img.youtube.com/vi/nbValIpeoq8/maxresdefault.jpg" alt="Instagram-Reel Lasse.PTS" loading="lazy" width="640" height="360" />
-                <span class="portfolio-arrow" aria-hidden="true">↗</span>
-              </div>
-              <p class="portfolio-label">Social Media&thinsp;·&thinsp;Lasse.PTS</p>
-            </a>
-            <a class="portfolio-item" href="https://youtu.be/E98i3P-n10g" target="_blank" rel="noopener noreferrer"
-               aria-label="Apple Watch Ad — Don&#x27;t be afraid. auf YouTube ansehen (öffnet in neuem Tab)">
-              <div class="portfolio-thumb">
-                <img src="https://img.youtube.com/vi/E98i3P-n10g/maxresdefault.jpg" alt="Apple Watch Ad — Don&#x27;t be afraid." loading="lazy" width="640" height="360" />
-                <span class="portfolio-arrow" aria-hidden="true">↗</span>
-              </div>
-              <p class="portfolio-label">Werbeclip&thinsp;·&thinsp;Personal</p>
-            </a>
-            <a class="portfolio-item" href="https://youtu.be/5KOtt-FBdwI" target="_blank" rel="noopener noreferrer"
-               aria-label="EURO 24 Trailer — EM-Feeling pur auf YouTube ansehen (öffnet in neuem Tab)">
-              <div class="portfolio-thumb">
-                <img src="https://img.youtube.com/vi/5KOtt-FBdwI/maxresdefault.jpg" alt="EURO 24 Trailer — EM-Feeling pur" loading="lazy" width="640" height="360" />
-                <span class="portfolio-arrow" aria-hidden="true">↗</span>
-              </div>
-              <p class="portfolio-label">Trailer&thinsp;·&thinsp;Personal</p>
-            </a>
+        <div class="work-panel" role="tabpanel">
+          <p class="work-goal">Zeigt euch als Arbeitgeber von der besten Seite und spricht genau die Talente an, die zu euch passen.</p>
+          <p class="work-empty">Hier entsteht gerade das erste Beispiel. Du hast ein Recruiting-Projekt? <a href="#anfragen">Schreib mir.</a></p>
+        </div>
+        <div class="work-panel" role="tabpanel">
+          <p class="work-goal">Kurze, schnelle Inhalte für Reichweite und Präsenz im Feed — plattformoptimiert produziert.</p>
+          <div class="video-grid">
+            <div class="video-card">
+              <button class="video-embed" type="button" data-id="DsY7qK6Mrjc" data-title="Aftermovie OMR Festival"
+                      aria-label="Video abspielen: Aftermovie OMR Festival"
+                      style="background-image:url('https://img.youtube.com/vi/DsY7qK6Mrjc/maxresdefault.jpg')">
+                <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+              </button>
+              <p class="video-card-title">Aftermovie OMR Festival</p>
+              <p class="video-card-note">Aftermovie · OMR Festival</p>
+            </div>
+            <div class="video-card">
+              <button class="video-embed" type="button" data-id="CHl51cqaKss" data-title="Instagram-Vlog Lasse.PTS"
+                      aria-label="Video abspielen: Instagram-Vlog Lasse.PTS"
+                      style="background-image:url('https://img.youtube.com/vi/CHl51cqaKss/maxresdefault.jpg')">
+                <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+              </button>
+              <p class="video-card-title">Instagram-Vlog Lasse.PTS</p>
+              <p class="video-card-note">Social Media · Lasse.PTS</p>
+            </div>
+            <div class="video-card">
+              <button class="video-embed" type="button" data-id="nbValIpeoq8" data-title="Instagram-Reel Lasse.PTS"
+                      aria-label="Video abspielen: Instagram-Reel Lasse.PTS"
+                      style="background-image:url('https://img.youtube.com/vi/nbValIpeoq8/maxresdefault.jpg')">
+                <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+              </button>
+              <p class="video-card-title">Instagram-Reel Lasse.PTS</p>
+              <p class="video-card-note">Social Media · Lasse.PTS</p>
+            </div>
+            <div class="video-card">
+              <button class="video-embed" type="button" data-id="E98i3P-n10g" data-title="Apple Watch Ad — Don&#x27;t be afraid."
+                      aria-label="Video abspielen: Apple Watch Ad — Don&#x27;t be afraid."
+                      style="background-image:url('https://img.youtube.com/vi/E98i3P-n10g/maxresdefault.jpg')">
+                <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+              </button>
+              <p class="video-card-title">Apple Watch Ad — Don&#x27;t be afraid.</p>
+              <p class="video-card-note">Werbeclip · Personal</p>
+            </div>
+            <div class="video-card">
+              <button class="video-embed" type="button" data-id="5KOtt-FBdwI" data-title="EURO 24 Trailer — EM-Feeling pur"
+                      aria-label="Video abspielen: EURO 24 Trailer — EM-Feeling pur"
+                      style="background-image:url('https://img.youtube.com/vi/5KOtt-FBdwI/maxresdefault.jpg')">
+                <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+              </button>
+              <p class="video-card-title">EURO 24 Trailer — EM-Feeling pur</p>
+              <p class="video-card-note">Trailer · Personal</p>
+            </div>
           </div>
         </div>
-        <div class="portfolio-progress" aria-hidden="true"><span class="portfolio-progress-bar"></span></div>
+        </div>
       </div>
     <!-- PROJECTS:INDEX:END -->
   </section>

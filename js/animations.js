@@ -106,20 +106,73 @@
     track.style.animationDuration = Math.max(30, Math.round(halfWidth / 35)) + 's';
   })();
 
-  /* ---------- 3) PROJEKTE: NATIVER HORIZONTAL-SCROLL + FORTSCHRITT (pro Panel) ---------- */
-  (function projectScroll() {
-    document.querySelectorAll('.portfolio-hscroll:not(.is-single)').forEach(function (hscroll) {
-      var bar = hscroll.parentElement.querySelector('.portfolio-progress-bar');
-      if (!bar) return;
-      var update = function () {
-        var max = hscroll.scrollWidth - hscroll.clientWidth;
-        var p = max > 0 ? hscroll.scrollLeft / max : 0;
-        var range = bar.parentElement.clientWidth - bar.offsetWidth;
-        bar.style.transform = 'translateX(' + (Math.max(0, Math.min(1, p)) * range) + 'px)';
-      };
-      hscroll.addEventListener('scroll', update, { passive: true });
-      window.addEventListener('resize', update);
-      update();
+  /* ---------- 3) „MEINE ARBEIT": SEGMENTED-SWITCHER + CAROUSEL ---------- */
+  (function workSwitch() {
+    var sw = document.querySelector('.switch');
+    var carousel = document.querySelector('.work-carousel');
+    var track = document.querySelector('.work-track');
+    if (!sw || !carousel || !track) return;
+    var pill = sw.querySelector('.switch-pill');
+    var btns = [].slice.call(sw.querySelectorAll('.switch-btn'));
+    var panels = [].slice.call(track.querySelectorAll('.work-panel'));
+    if (!btns.length) return;
+    var active = 0;
+
+    function movePill() {
+      var b = btns[active];
+      pill.style.transform = 'translateX(' + b.offsetLeft + 'px)';
+      pill.style.width = b.offsetWidth + 'px';
+    }
+    function setHeight() {
+      if (panels[active]) carousel.style.height = panels[active].offsetHeight + 'px';
+    }
+    function setActive(i) {
+      active = i;
+      btns.forEach(function (b, idx) {
+        var on = idx === i;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      track.style.transform = 'translateX(' + (-i * (100 / btns.length)) + '%)';
+      movePill();
+      setHeight();
+      // aktiven Button bei schmalem (scrollbarem) Switch in den Blick rücken
+      if (btns[i].scrollIntoView) {
+        btns[i].scrollIntoView({ inline: 'nearest', block: 'nearest' });
+      }
+    }
+
+    btns.forEach(function (b, i) {
+      b.addEventListener('click', function () { setActive(i); });
+    });
+    window.addEventListener('resize', function () { movePill(); setHeight(); });
+
+    // Initiale Messung (auch nach Font-Load, damit Breiten stimmen)
+    movePill(); setHeight();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { movePill(); setHeight(); });
+    }
+  })();
+
+  /* ---------- 3b) VIDEOS: DSGVO-konformes Click-to-Load (youtube-nocookie) ---------- */
+  (function videoLoad() {
+    document.querySelectorAll('.video-embed').forEach(function (el) {
+      el.addEventListener('click', function () {
+        if (el.dataset.loaded) return;
+        var id = el.getAttribute('data-id');
+        if (!id) return;
+        el.dataset.loaded = '1';
+        var ifr = document.createElement('iframe');
+        ifr.src = 'https://www.youtube-nocookie.com/embed/' + id +
+                  '?autoplay=1&rel=0&modestbranding=1';
+        ifr.title = el.getAttribute('data-title') || 'Video';
+        ifr.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        ifr.setAttribute('allowfullscreen', '');
+        el.innerHTML = '';
+        el.appendChild(ifr);
+        // Höhe des Carousels ggf. neu setzen
+        window.dispatchEvent(new Event('resize'));
+      });
     });
   })();
 

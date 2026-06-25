@@ -3,17 +3,15 @@
 build.py — generiert statisches HTML aus den Datenquellen.
 
 Quellen:
-  data/projects.json   -> Tab-/Filter-System mit Projekt-Cards (index.html)
-                          + Tab-/Filter-Liste (projects.html)
+  data/projects.json   -> index.html: Segmented-Switcher "Meine Arbeit" (Pill + Carousel)
+                          projects.html: Tab-Liste "Alle Projekte"
   kunden-logos/        -> kunden-logos/manifest.json + Logo-Marquee (index.html)
 
-Inhalte werden zwischen Marker-Kommentaren eingesetzt:
-  <!-- PROJECTS:INDEX:START --> ... <!-- PROJECTS:INDEX:END -->
-  <!-- PROJECTS:LIST:START -->  ... <!-- PROJECTS:LIST:END -->
-  <!-- LOGOS:START -->          ... <!-- LOGOS:END -->
+Inhalte zwischen Marker-Kommentaren:
+  <!-- PROJECTS:INDEX:START -->/<END>, <!-- PROJECTS:LIST:START -->/<END>, <!-- LOGOS:... -->
 
-Alle Projekte stehen statisch im HTML (auch inaktive Tabs => display:none),
-damit Suchmaschinen den kompletten Inhalt lesen können.
+Alle Projekte stehen statisch im HTML (auch inaktive Tabs/Panels) -> SEO-lesbar.
+Videos laden DSGVO-konform erst nach Klick (youtube-nocookie).
 """
 
 import json
@@ -23,14 +21,14 @@ import html
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Reihenfolge + Beschriftung + Nutzen-Satz der drei Leistungs-Tabs
+# key, Button-Label, Ziel-/Nutzen-Satz
 CATEGORIES = [
-    ("imagefilm",  "Imagefilm",
-     "Zeigt, wer ihr wirklich seid — für mehr Bindung zu euren Kunden."),
-    ("recruiting", "Recruiting-Video",
-     "Gibt den richtigen Leuten einen Grund, sich für euch zu entscheiden."),
-    ("social",     "Social-Media-Content",
-     "Kurzformate, die fürs jeweilige Format gemacht sind — nicht nur gekürzt."),
+    ("imagefilm",  "ImageFilm",
+     "Ein ImageFilm erzählt die Geschichte hinter der Marke, schafft Vertrauen und zeigt, wofür ein Unternehmen steht."),
+    ("recruiting", "Recruiting",
+     "Zeigt euch als Arbeitgeber von der besten Seite und spricht genau die Talente an, die zu euch passen."),
+    ("social",     "Video & Social Media Content",
+     "Kurze, schnelle Inhalte für Reichweite und Präsenz im Feed — plattformoptimiert produziert."),
 ]
 DEFAULT_CAT = "imagefilm"
 
@@ -48,7 +46,7 @@ def yt_id(url: str) -> str:
 def esc(s: str) -> str:
     return html.escape(s or "", quote=True)
 
-def replace_between(text: str, marker: str, content: str, indent: str = "    ") -> str:
+def replace_between(text, marker, content, indent="    "):
     start = f"<!-- {marker}:START -->"
     end = f"<!-- {marker}:END -->"
     pattern = re.compile(re.escape(start) + r".*?" + re.escape(end), re.DOTALL)
@@ -56,31 +54,72 @@ def replace_between(text: str, marker: str, content: str, indent: str = "    ") 
         raise SystemExit(f"Marker {marker} nicht gefunden.")
     return pattern.sub(f"{start}\n{content}\n{indent}{end}", text)
 
-def pretty_name(filename: str) -> str:
+def pretty_name(filename):
     stem = os.path.splitext(filename)[0]
     return " ".join(w.capitalize() for w in re.split(r"[-_]+", stem) if w)
+
+PLAY_SVG = ('<span class="video-play" aria-hidden="true">'
+            '<svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>'
+            '</span>')
+
+EMPTY = ('<p class="work-empty">Hier entsteht gerade das erste Beispiel. '
+         'Du hast ein Recruiting-Projekt? <a href="#anfragen">Schreib mir.</a></p>')
 
 # ---------------------------------------------------------------- load data
 with open(os.path.join(ROOT, "data", "projects.json"), encoding="utf-8") as f:
     projects = json.load(f)
+by_cat = {key: [p for p in projects if p.get("category") == key] for key, _, _ in CATEGORIES}
 
-by_cat = {key: [p for p in projects if p.get("category") == key]
-          for key, _, _ in CATEGORIES}
-
-# ---------------------------------------------------------------- card / row templates
-def index_card(p):
+# ---------------------------------------------------------------- index: segmented switcher + carousel
+def video_card(p):
     vid = yt_id(p["youtubeUrl"])
-    label = f'{esc(p["label"])}&thinsp;·&thinsp;{esc(p["customer"])}'
+    note = f'{esc(p["label"])} · {esc(p["customer"])}'
     return (
-f'''            <a class="portfolio-item" href="{esc(p["youtubeUrl"])}" target="_blank" rel="noopener noreferrer"
-               aria-label="{esc(p["title"])} auf YouTube ansehen (öffnet in neuem Tab)">
-              <div class="portfolio-thumb">
-                <img src="https://img.youtube.com/vi/{vid}/maxresdefault.jpg" alt="{esc(p["title"])}" loading="lazy" width="640" height="360" />
-                <span class="portfolio-arrow" aria-hidden="true">↗</span>
-              </div>
-              <p class="portfolio-label">{label}</p>
-            </a>''')
+f'''            <div class="video-card">
+              <button class="video-embed" type="button" data-id="{vid}" data-title="{esc(p["title"])}"
+                      aria-label="Video abspielen: {esc(p["title"])}"
+                      style="background-image:url('https://img.youtube.com/vi/{vid}/maxresdefault.jpg')">
+                {PLAY_SVG}
+              </button>
+              <p class="video-card-title">{esc(p["title"])}</p>
+              <p class="video-card-note">{note}</p>
+            </div>''')
 
+def index_block():
+    # Switch
+    parts = ['      <div class="switch" role="tablist" aria-label="Leistungen">',
+             '        <div class="switch-pill" aria-hidden="true"></div>']
+    for i, (key, label, _) in enumerate(CATEGORIES):
+        active = " is-active" if i == 0 else ""
+        sel = "true" if i == 0 else "false"
+        parts.append(
+            f'        <button class="switch-btn{active}" type="button" role="tab" '
+            f'data-i="{i}" aria-selected="{sel}"><span>{esc(label)}</span></button>')
+    parts.append('      </div>')
+    switch = "\n".join(parts)
+
+    # Carousel
+    panels = []
+    for key, _, goal in CATEGORIES:
+        items = by_cat[key]
+        if not items:
+            body = EMPTY
+        else:
+            cards = "\n".join(video_card(p) for p in items)
+            body = f'<div class="video-grid">\n{cards}\n          </div>'
+        panels.append(
+            f'        <div class="work-panel" role="tabpanel">\n'
+            f'          <p class="work-goal">{esc(goal)}</p>\n'
+            f'          {body}\n'
+            f'        </div>')
+    carousel = ('      <div class="work-carousel">\n'
+                '        <div class="work-track">\n'
+                + "\n".join(panels) + "\n"
+                '        </div>\n'
+                '      </div>')
+    return switch + "\n" + carousel
+
+# ---------------------------------------------------------------- projects.html: Tab-Liste
 def list_row(p):
     vid = yt_id(p["youtubeUrl"])
     parts = [p["label"], p["customer"]] + ([p["date"]] if p.get("date") else [])
@@ -95,47 +134,6 @@ f'''        <a class="project-row" href="{esc(p["youtubeUrl"])}" target="_blank"
           <span class="project-arrow">↗</span>
         </a>''')
 
-# ---------------------------------------------------------------- tabs (shared)
-def tabs_html():
-    btns = []
-    for key, label, _ in CATEGORIES:
-        active = " is-active" if key == DEFAULT_CAT else ""
-        sel = "true" if key == DEFAULT_CAT else "false"
-        btns.append(
-            f'        <button class="tab{active}" type="button" role="tab" '
-            f'id="tab-{key}" data-tab="{key}" aria-selected="{sel}" '
-            f'aria-controls="panel-{key}">{esc(label)}</button>')
-    return ('      <div class="tabs" role="tablist" aria-label="Leistungen">\n'
-            + "\n".join(btns) + "\n      </div>")
-
-EMPTY = ('<p class="tab-empty">Hier entsteht gerade das erste Beispiel. '
-         'Du hast so ein Projekt? <a href="#anfragen">Schreib mir.</a></p>')
-
-# ---------------------------------------------------------------- index: tabs + panels (cards)
-def index_block():
-    out = [tabs_html()]
-    for key, _, benefit in CATEGORIES:
-        items = by_cat[key]
-        active = " is-active" if key == DEFAULT_CAT else ""
-        if not items:
-            body = EMPTY.replace("so ein Projekt", "ein Recruiting-Projekt") if key == "recruiting" else EMPTY
-        else:
-            single = " is-single" if len(items) == 1 else ""
-            cards = "\n".join(index_card(p) for p in items)
-            progress = ('\n        <div class="portfolio-progress" aria-hidden="true">'
-                        '<span class="portfolio-progress-bar"></span></div>') if len(items) > 1 else ""
-            body = (f'<div class="portfolio-hscroll{single}">\n'
-                    f'          <div class="portfolio-track">\n{cards}\n          </div>\n'
-                    f'        </div>{progress}')
-        out.append(
-            f'      <div class="tab-panel{active}" id="panel-{key}" data-panel="{key}" '
-            f'role="tabpanel" aria-labelledby="tab-{key}">\n'
-            f'        <p class="tab-benefit">{esc(benefit)}</p>\n'
-            f'        {body}\n'
-            f'      </div>')
-    return "\n".join(out)
-
-# ---------------------------------------------------------------- projects.html: tabs + panels (list)
 def list_block():
     out = ['    <div class="tabs" role="tablist" aria-label="Leistungen">']
     for key, label, _ in CATEGORIES:
@@ -147,11 +145,7 @@ def list_block():
     for key, _, benefit in CATEGORIES:
         items = by_cat[key]
         active = " is-active" if key == DEFAULT_CAT else ""
-        if not items:
-            body = EMPTY.replace("so ein Projekt", "ein Recruiting-Projekt") if key == "recruiting" else EMPTY
-        else:
-            rows = "\n".join(list_row(p) for p in items)
-            body = f'<div class="projects-list">\n{rows}\n        </div>'
+        body = EMPTY if not items else f'<div class="projects-list">\n{chr(10).join(list_row(p) for p in items)}\n        </div>'
         out.append(
             f'    <div class="tab-panel{active}" id="lpanel-{key}" data-panel="{key}" '
             f'role="tabpanel" aria-labelledby="ltab-{key}">\n'
@@ -160,19 +154,17 @@ def list_block():
             f'    </div>')
     return "\n".join(out)
 
-# ---------------------------------------------------------------- logos -> manifest + marquee
+# ---------------------------------------------------------------- logos
 logo_dir = os.path.join(ROOT, "kunden-logos")
 exts = (".svg", ".png", ".jpg", ".jpeg")
-logos = sorted(f for f in os.listdir(logo_dir)
-               if f.lower().endswith(exts) and not f.startswith("."))
+logos = sorted(f for f in os.listdir(logo_dir) if f.lower().endswith(exts) and not f.startswith("."))
 with open(os.path.join(logo_dir, "manifest.json"), "w", encoding="utf-8") as f:
     json.dump(logos, f, ensure_ascii=False, indent=2)
 logos_html = "\n".join(
-    f'        <img class="marquee-logo" src="kunden-logos/{esc(fn)}" '
-    f'alt="Kunde: {esc(pretty_name(fn))}" loading="lazy" />'
+    f'        <img class="marquee-logo" src="kunden-logos/{esc(fn)}" alt="Kunde: {esc(pretty_name(fn))}" loading="lazy" />'
     for fn in logos)
 
-# ---------------------------------------------------------------- write files
+# ---------------------------------------------------------------- write
 index_path = os.path.join(ROOT, "index.html")
 idx = open(index_path, encoding="utf-8").read()
 idx = replace_between(idx, "PROJECTS:INDEX", index_block(), indent="    ")
