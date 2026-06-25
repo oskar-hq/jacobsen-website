@@ -119,40 +119,23 @@ def index_block():
                 '      </div>')
     return switch + "\n" + carousel
 
-# ---------------------------------------------------------------- projects.html: Tab-Liste
-def list_row(p):
-    vid = yt_id(p["youtubeUrl"])
-    parts = [p["label"], p["customer"]] + ([p["date"]] if p.get("date") else [])
-    desc = esc(" · ".join(parts))
-    return (
-f'''        <a class="project-row" href="{esc(p["youtubeUrl"])}" target="_blank" rel="noopener noreferrer">
-          <img class="project-thumb" src="https://img.youtube.com/vi/{vid}/mqdefault.jpg" alt="{esc(p["title"])}" loading="lazy" width="64" height="64" />
-          <div>
-            <p class="project-name">{esc(p["title"])}</p>
-            <p class="project-desc">{desc}</p>
-          </div>
-          <span class="project-arrow">↗</span>
-        </a>''')
-
+# ---------------------------------------------------------------- projects.html: ruhiges Kategorie-Raster
 def list_block():
-    out = ['    <div class="tabs" role="tablist" aria-label="Leistungen">']
-    for key, label, _ in CATEGORIES:
-        active = " is-active" if key == DEFAULT_CAT else ""
-        sel = "true" if key == DEFAULT_CAT else "false"
-        out.append(f'      <button class="tab{active}" type="button" role="tab" id="ltab-{key}" '
-                   f'data-tab="{key}" aria-selected="{sel}" aria-controls="lpanel-{key}">{esc(label)}</button>')
-    out.append('    </div>')
-    for key, _, benefit in CATEGORIES:
+    blocks = []
+    for key, label, goal in CATEGORIES:
         items = by_cat[key]
-        active = " is-active" if key == DEFAULT_CAT else ""
-        body = EMPTY if not items else f'<div class="projects-list">\n{chr(10).join(list_row(p) for p in items)}\n        </div>'
-        out.append(
-            f'    <div class="tab-panel{active}" id="lpanel-{key}" data-panel="{key}" '
-            f'role="tabpanel" aria-labelledby="ltab-{key}">\n'
-            f'      <p class="tab-benefit">{esc(benefit)}</p>\n'
-            f'      {body}\n'
-            f'    </div>')
-    return "\n".join(out)
+        if not items:
+            body = EMPTY
+        else:
+            cards = "\n".join(video_card(p) for p in items)
+            body = f'<div class="video-grid">\n{cards}\n      </div>'
+        blocks.append(
+            f'  <section class="work-cat">\n'
+            f'    <p class="work-cat-label" data-reveal>{esc(label)}</p>\n'
+            f'    <p class="work-cat-goal" data-reveal>{esc(goal)}</p>\n'
+            f'    {body}\n'
+            f'  </section>')
+    return "\n".join(blocks)
 
 # ---------------------------------------------------------------- logos
 logo_dir = os.path.join(ROOT, "kunden-logos")

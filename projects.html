@@ -34,6 +34,9 @@
   <link rel="preload" href="fonts/SpaceGrotesk-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
 
   <link rel="stylesheet" href="style.css?v=20260625" />
+
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="js/animations.js" defer></script>
 </head>
 <body>
 
@@ -53,89 +56,95 @@
   </div>
 
   <!-- PROJECTS:LIST:START -->
-    <div class="tabs" role="tablist" aria-label="Leistungen">
-      <button class="tab is-active" type="button" role="tab" id="ltab-imagefilm" data-tab="imagefilm" aria-selected="true" aria-controls="lpanel-imagefilm">ImageFilm</button>
-      <button class="tab" type="button" role="tab" id="ltab-recruiting" data-tab="recruiting" aria-selected="false" aria-controls="lpanel-recruiting">Recruiting</button>
-      <button class="tab" type="button" role="tab" id="ltab-social" data-tab="social" aria-selected="false" aria-controls="lpanel-social">Video &amp; Social Media Content</button>
-    </div>
-    <div class="tab-panel is-active" id="lpanel-imagefilm" data-panel="imagefilm" role="tabpanel" aria-labelledby="ltab-imagefilm">
-      <p class="tab-benefit">Ein ImageFilm erzählt die Geschichte hinter der Marke, schafft Vertrauen und zeigt, wofür ein Unternehmen steht.</p>
-      <div class="projects-list">
-        <a class="project-row" href="https://youtu.be/_LAC2w1k5po" target="_blank" rel="noopener noreferrer">
-          <img class="project-thumb" src="https://img.youtube.com/vi/_LAC2w1k5po/mqdefault.jpg" alt="Petersens Ferienwohnungen" loading="lazy" width="64" height="64" />
-          <div>
-            <p class="project-name">Petersens Ferienwohnungen</p>
-            <p class="project-desc">Imagefilm · Petersens</p>
-          </div>
-          <span class="project-arrow">↗</span>
-        </a>
-        <a class="project-row" href="https://youtu.be/sSnNlWChtXg" target="_blank" rel="noopener noreferrer">
-          <img class="project-thumb" src="https://img.youtube.com/vi/sSnNlWChtXg/mqdefault.jpg" alt="Image Film Gemeinde Gelting" loading="lazy" width="64" height="64" />
-          <div>
-            <p class="project-name">Image Film Gemeinde Gelting</p>
-            <p class="project-desc">Imagefilm · Gemeinde Gelting · Januar 2026</p>
-          </div>
-          <span class="project-arrow">↗</span>
-        </a>
-        <a class="project-row" href="https://youtu.be/yFh_gb379-c" target="_blank" rel="noopener noreferrer">
-          <img class="project-thumb" src="https://img.youtube.com/vi/yFh_gb379-c/mqdefault.jpg" alt="Website-Video Lasse.PTS" loading="lazy" width="64" height="64" />
-          <div>
-            <p class="project-name">Website-Video Lasse.PTS</p>
-            <p class="project-desc">Unternehmensfilm · Lasse.PTS · März 2026</p>
-          </div>
-          <span class="project-arrow">↗</span>
-        </a>
-        </div>
-    </div>
-    <div class="tab-panel" id="lpanel-recruiting" data-panel="recruiting" role="tabpanel" aria-labelledby="ltab-recruiting">
-      <p class="tab-benefit">Zeigt euch als Arbeitgeber von der besten Seite und spricht genau die Talente an, die zu euch passen.</p>
-      <p class="work-empty">Hier entsteht gerade das erste Beispiel. Du hast ein Recruiting-Projekt? <a href="#anfragen">Schreib mir.</a></p>
-    </div>
-    <div class="tab-panel" id="lpanel-social" data-panel="social" role="tabpanel" aria-labelledby="ltab-social">
-      <p class="tab-benefit">Kurze, schnelle Inhalte für Reichweite und Präsenz im Feed — plattformoptimiert produziert.</p>
-      <div class="projects-list">
-        <a class="project-row" href="https://youtu.be/DsY7qK6Mrjc" target="_blank" rel="noopener noreferrer">
-          <img class="project-thumb" src="https://img.youtube.com/vi/DsY7qK6Mrjc/mqdefault.jpg" alt="Aftermovie OMR Festival" loading="lazy" width="64" height="64" />
-          <div>
-            <p class="project-name">Aftermovie OMR Festival</p>
-            <p class="project-desc">Aftermovie · OMR Festival · Mai 2026</p>
-          </div>
-          <span class="project-arrow">↗</span>
-        </a>
-        <a class="project-row" href="https://youtube.com/shorts/CHl51cqaKss" target="_blank" rel="noopener noreferrer">
-          <img class="project-thumb" src="https://img.youtube.com/vi/CHl51cqaKss/mqdefault.jpg" alt="Instagram-Vlog Lasse.PTS" loading="lazy" width="64" height="64" />
-          <div>
-            <p class="project-name">Instagram-Vlog Lasse.PTS</p>
-            <p class="project-desc">Social Media · Lasse.PTS · Mai 2026</p>
-          </div>
-          <span class="project-arrow">↗</span>
-        </a>
-        <a class="project-row" href="https://youtube.com/shorts/nbValIpeoq8" target="_blank" rel="noopener noreferrer">
-          <img class="project-thumb" src="https://img.youtube.com/vi/nbValIpeoq8/mqdefault.jpg" alt="Instagram-Reel Lasse.PTS" loading="lazy" width="64" height="64" />
-          <div>
-            <p class="project-name">Instagram-Reel Lasse.PTS</p>
-            <p class="project-desc">Social Media · Lasse.PTS · März 2026</p>
-          </div>
-          <span class="project-arrow">↗</span>
-        </a>
-        <a class="project-row" href="https://youtu.be/E98i3P-n10g" target="_blank" rel="noopener noreferrer">
-          <img class="project-thumb" src="https://img.youtube.com/vi/E98i3P-n10g/mqdefault.jpg" alt="Apple Watch Ad — Don&#x27;t be afraid." loading="lazy" width="64" height="64" />
-          <div>
-            <p class="project-name">Apple Watch Ad — Don&#x27;t be afraid.</p>
-            <p class="project-desc">Werbeclip · Personal · Januar 2024</p>
-          </div>
-          <span class="project-arrow">↗</span>
-        </a>
-        <a class="project-row" href="https://youtu.be/5KOtt-FBdwI" target="_blank" rel="noopener noreferrer">
-          <img class="project-thumb" src="https://img.youtube.com/vi/5KOtt-FBdwI/mqdefault.jpg" alt="EURO 24 Trailer — EM-Feeling pur" loading="lazy" width="64" height="64" />
-          <div>
-            <p class="project-name">EURO 24 Trailer — EM-Feeling pur</p>
-            <p class="project-desc">Trailer · Personal · Juni 2024</p>
-          </div>
-          <span class="project-arrow">↗</span>
-        </a>
-        </div>
-    </div>
+  <section class="work-cat">
+    <p class="work-cat-label" data-reveal>ImageFilm</p>
+    <p class="work-cat-goal" data-reveal>Ein ImageFilm erzählt die Geschichte hinter der Marke, schafft Vertrauen und zeigt, wofür ein Unternehmen steht.</p>
+    <div class="video-grid">
+            <div class="video-card">
+              <button class="video-embed" type="button" data-id="_LAC2w1k5po" data-title="Petersens Ferienwohnungen"
+                      aria-label="Video abspielen: Petersens Ferienwohnungen"
+                      style="background-image:url('https://img.youtube.com/vi/_LAC2w1k5po/maxresdefault.jpg')">
+                <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+              </button>
+              <p class="video-card-title">Petersens Ferienwohnungen</p>
+              <p class="video-card-note">Imagefilm · Petersens</p>
+            </div>
+            <div class="video-card">
+              <button class="video-embed" type="button" data-id="sSnNlWChtXg" data-title="Image Film Gemeinde Gelting"
+                      aria-label="Video abspielen: Image Film Gemeinde Gelting"
+                      style="background-image:url('https://img.youtube.com/vi/sSnNlWChtXg/maxresdefault.jpg')">
+                <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+              </button>
+              <p class="video-card-title">Image Film Gemeinde Gelting</p>
+              <p class="video-card-note">Imagefilm · Gemeinde Gelting</p>
+            </div>
+            <div class="video-card">
+              <button class="video-embed" type="button" data-id="yFh_gb379-c" data-title="Website-Video Lasse.PTS"
+                      aria-label="Video abspielen: Website-Video Lasse.PTS"
+                      style="background-image:url('https://img.youtube.com/vi/yFh_gb379-c/maxresdefault.jpg')">
+                <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+              </button>
+              <p class="video-card-title">Website-Video Lasse.PTS</p>
+              <p class="video-card-note">Unternehmensfilm · Lasse.PTS</p>
+            </div>
+      </div>
+  </section>
+  <section class="work-cat">
+    <p class="work-cat-label" data-reveal>Recruiting</p>
+    <p class="work-cat-goal" data-reveal>Zeigt euch als Arbeitgeber von der besten Seite und spricht genau die Talente an, die zu euch passen.</p>
+    <p class="work-empty">Hier entsteht gerade das erste Beispiel. Du hast ein Recruiting-Projekt? <a href="#anfragen">Schreib mir.</a></p>
+  </section>
+  <section class="work-cat">
+    <p class="work-cat-label" data-reveal>Video &amp; Social Media Content</p>
+    <p class="work-cat-goal" data-reveal>Kurze, schnelle Inhalte für Reichweite und Präsenz im Feed — plattformoptimiert produziert.</p>
+    <div class="video-grid">
+            <div class="video-card">
+              <button class="video-embed" type="button" data-id="DsY7qK6Mrjc" data-title="Aftermovie OMR Festival"
+                      aria-label="Video abspielen: Aftermovie OMR Festival"
+                      style="background-image:url('https://img.youtube.com/vi/DsY7qK6Mrjc/maxresdefault.jpg')">
+                <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+              </button>
+              <p class="video-card-title">Aftermovie OMR Festival</p>
+              <p class="video-card-note">Aftermovie · OMR Festival</p>
+            </div>
+            <div class="video-card">
+              <button class="video-embed" type="button" data-id="CHl51cqaKss" data-title="Instagram-Vlog Lasse.PTS"
+                      aria-label="Video abspielen: Instagram-Vlog Lasse.PTS"
+                      style="background-image:url('https://img.youtube.com/vi/CHl51cqaKss/maxresdefault.jpg')">
+                <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+              </button>
+              <p class="video-card-title">Instagram-Vlog Lasse.PTS</p>
+              <p class="video-card-note">Social Media · Lasse.PTS</p>
+            </div>
+            <div class="video-card">
+              <button class="video-embed" type="button" data-id="nbValIpeoq8" data-title="Instagram-Reel Lasse.PTS"
+                      aria-label="Video abspielen: Instagram-Reel Lasse.PTS"
+                      style="background-image:url('https://img.youtube.com/vi/nbValIpeoq8/maxresdefault.jpg')">
+                <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+              </button>
+              <p class="video-card-title">Instagram-Reel Lasse.PTS</p>
+              <p class="video-card-note">Social Media · Lasse.PTS</p>
+            </div>
+            <div class="video-card">
+              <button class="video-embed" type="button" data-id="E98i3P-n10g" data-title="Apple Watch Ad — Don&#x27;t be afraid."
+                      aria-label="Video abspielen: Apple Watch Ad — Don&#x27;t be afraid."
+                      style="background-image:url('https://img.youtube.com/vi/E98i3P-n10g/maxresdefault.jpg')">
+                <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+              </button>
+              <p class="video-card-title">Apple Watch Ad — Don&#x27;t be afraid.</p>
+              <p class="video-card-note">Werbeclip · Personal</p>
+            </div>
+            <div class="video-card">
+              <button class="video-embed" type="button" data-id="5KOtt-FBdwI" data-title="EURO 24 Trailer — EM-Feeling pur"
+                      aria-label="Video abspielen: EURO 24 Trailer — EM-Feeling pur"
+                      style="background-image:url('https://img.youtube.com/vi/5KOtt-FBdwI/maxresdefault.jpg')">
+                <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+              </button>
+              <p class="video-card-title">EURO 24 Trailer — EM-Feeling pur</p>
+              <p class="video-card-note">Trailer · Personal</p>
+            </div>
+      </div>
+  </section>
   <!-- PROJECTS:LIST:END -->
 
 </main>
