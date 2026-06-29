@@ -27,7 +27,7 @@ CATEGORIES = [
      "Ein ImageFilm erzählt die Geschichte hinter der Marke, schafft Vertrauen und zeigt, wofür ein Unternehmen steht."),
     ("recruiting", "Recruiting",
      "Zeigt euch als Arbeitgeber von der besten Seite und spricht genau die Talente an, die zu euch passen."),
-    ("social",     "Video & Social Media Content",
+    ("social",     "Social Media",
      "Kurze, schnelle Inhalte für Reichweite und Präsenz im Feed — plattformoptimiert produziert."),
 ]
 DEFAULT_CAT = "imagefilm"
